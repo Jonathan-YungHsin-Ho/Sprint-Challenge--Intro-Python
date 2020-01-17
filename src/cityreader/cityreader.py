@@ -12,7 +12,7 @@ class City:
         self.lon = lon
 
     def __repr__(self):
-        return f'({self.name}, {self.lat}, {self.lon})'
+        return f'{self.name}: ({self.lat}, {self.lon})'
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -47,8 +47,8 @@ cityreader(cities)
 
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(c)
+# for c in cities:
+# print(c)
 
 # STRETCH GOAL!
 #
@@ -80,14 +80,30 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+lat1, lon1 = input('Enter lat1,lon1:').split(',')
+lat2, lon2 = input('Enter lat2,lon2:').split(',')
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
     within = []
 
-    # TODO Ensure that the lat and lon valuse are all floats
+    # TODO Ensure that the lat and lon values are all floats
     # Go through each city and check to see if it falls within
     # the specified coordinates.
+    lat_upper_right = max([float(lat1), float(lat2)])
+    lon_upper_right = max([float(lon1), float(lon2)])
+    lat_lower_left = min([float(lat1), float(lat2)])
+    lon_lower_left = min([float(lon1), float(lon2)])
+
+    for city in cities:
+        if city.lat < lat_upper_right and city.lat > lat_lower_left and city.lon < lon_upper_right and city.lon > lon_lower_left:
+            within.append(city)
+
+    for city in within:
+        print(city)
 
     return within
+
+
+cityreader_stretch(lat1, lon1, lat2, lon2, cities)
