@@ -47,8 +47,8 @@ cityreader(cities)
 
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-# for c in cities:
-# print(c)
+for c in cities:
+    print(c)
 
 # STRETCH GOAL!
 #
@@ -80,8 +80,9 @@ cityreader(cities)
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
-lat1, lon1 = input('Enter lat1,lon1:').split(',')
-lat2, lon2 = input('Enter lat2,lon2:').split(',')
+
+# lat1, lon1 = input('Enter lat1,lon1:').split(',')
+# lat2, lon2 = input('Enter lat2,lon2:').split(',')
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
@@ -91,13 +92,13 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # TODO Ensure that the lat and lon values are all floats
     # Go through each city and check to see if it falls within
     # the specified coordinates.
-    lat_upper_right = max([float(lat1), float(lat2)])
-    lon_upper_right = max([float(lon1), float(lon2)])
-    lat_lower_left = min([float(lat1), float(lat2)])
-    lon_lower_left = min([float(lon1), float(lon2)])
+    lat_upper = max([float(lat1), float(lat2)])
+    lon_upper = max([float(lon1), float(lon2)])
+    lat_lower = min([float(lat1), float(lat2)])
+    lon_lower = min([float(lon1), float(lon2)])
 
     for city in cities:
-        if city.lat < lat_upper_right and city.lat > lat_lower_left and city.lon < lon_upper_right and city.lon > lon_lower_left:
+        if city.lat < lat_upper and city.lat > lat_lower and city.lon < lon_upper and city.lon > lon_lower:
             within.append(city)
 
     for city in within:
@@ -106,4 +107,4 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     return within
 
 
-cityreader_stretch(lat1, lon1, lat2, lon2, cities)
+# cityreader_stretch(lat1, lon1, lat2, lon2, cities)
